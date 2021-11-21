@@ -17,3 +17,10 @@ module ReflectionApp
     # the framework and any gems in your application.
   end
 end
+
+# 自動でslimファイルを作成するように変更
+module App
+  class Application < Rails::Application
+    config.generators.template_engine = :slim #slimに変更
+  end                                                                                                                                                                     
+end
