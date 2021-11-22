@@ -1,0 +1,9 @@
+h2 リフレクションアプリ
+
+- if user_signed_in?
+  /li = link_to current_user.name, 
+  /↑マイページを実装後、pathを設定
+  li = link_to 'ログアウト', destroy_user_session_path, method: :delete
+- else
+  li = link_to '新規登録', new_user_registration_path
+  li = link_to 'サインイン', new_user_session_path
