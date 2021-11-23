@@ -3,6 +3,7 @@ h2 リフレクションアプリ
 - if user_signed_in?
   li = link_to 'マイページ', user_path(current_user.id)
   li = link_to 'ログアウト', destroy_user_session_path, method: :delete
+  li = link_to '新規作成', new_note_path
 - else
   li = link_to '新規登録', new_user_registration_path
   li = link_to 'サインイン', new_user_session_path

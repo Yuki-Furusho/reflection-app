@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "notes#index"
   resources :notes
   resources :users, only: :show
+  resources :note_steps, only: [:index, :show, :update]
 end
