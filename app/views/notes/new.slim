@@ -1,2 +1,7 @@
-<h1>Notes#new</h1>
-<p>Find me in app/views/notes/new.html.erb</p>
+h2 Notes#new
+= form_with model: @note, local: true do |f|
+  p いつあったことですか？
+  = f.text_area :when, placeholder:"昨日、先週、この前会った時"
+  p どんなことがありましたか？
+  = f.text_area :fact, placeholder:""
+  = f.submit '次へ'
