@@ -1,7 +1,7 @@
 class EmotionName < ActiveHash::Base
   include ActiveHash::Associations
   belongs_to :emotions
-  
+
   self.data = [
     { id: 1, name: '歓喜' },
     { id: 2, name: '喜び' },
@@ -33,6 +33,6 @@ class EmotionName < ActiveHash::Base
     { id: 28, name: '警戒' },
     { id: 29, name: '期待' },
     { id: 30, name: '関心' },
-    { id: 31, name: '楽観' },
+    { id: 31, name: '楽観' }
   ]
 end
