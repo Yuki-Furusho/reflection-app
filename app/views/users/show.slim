@@ -1,0 +1,8 @@
+== render 'shared/header'
+
+h2 = @name 
+= link_to '登録情報の設定', edit_user_registration_path(current_user.id)
+
+h3 note一覧
+- @notes.each do |note|
+  p = note.fact
