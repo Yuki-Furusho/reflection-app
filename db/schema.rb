@@ -10,15 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_030941) do
+ActiveRecord::Schema.define(version: 2021_11_23_113541) do
+
+  create_table "emotions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "emotion_name_id", null: false
+    t.bigint "note_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_emotions_on_note_id"
+  end
 
   create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "when"
     t.string "fact", null: false
-    t.integer "visibility_id", null: false
+    t.integer "visibility_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "wanted_to"
+    t.string "wanted_you_to"
+    t.integer "emotions_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -36,5 +47,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_030941) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "emotions", "notes"
   add_foreign_key "users", "notes"
 end
