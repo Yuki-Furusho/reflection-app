@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NoteStepsControllerTest < ActionDispatch::IntegrationTest
+class NoteEmotionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

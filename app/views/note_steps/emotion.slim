@@ -1,5 +1,0 @@
-h2 emotion
-= form_with model: @emotion, local: true do |f|
-  p そのときどんな気持ちになりましたか？いくつでもチェックしてください。
-  = f.collection_check_boxes(:emotion_name_id, EmotionName.all, :id, :name, {})
-  = f.submit '次へ'

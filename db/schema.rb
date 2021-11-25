@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_113541) do
+ActiveRecord::Schema.define(version: 2021_11_25_115920) do
 
   create_table "emotions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "emotion_name_id", null: false
-    t.bigint "note_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["note_id"], name: "index_emotions_on_note_id"
+    t.string "emotion_name"
+  end
+
+  create_table "note_emotions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "note_id"
+    t.bigint "emotion_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["emotion_id"], name: "index_note_emotions_on_emotion_id"
+    t.index ["note_id"], name: "index_note_emotions_on_note_id"
   end
 
   create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -29,7 +36,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_113541) do
     t.integer "user_id"
     t.string "wanted_to"
     t.string "wanted_you_to"
-    t.integer "emotions_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -47,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_113541) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "emotions", "notes"
+  add_foreign_key "note_emotions", "emotions"
+  add_foreign_key "note_emotions", "notes"
   add_foreign_key "users", "notes"
 end
