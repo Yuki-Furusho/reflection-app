@@ -3,4 +3,5 @@
 h3 Notes#index
 
 - @notes.each do |note|
-  p = note.fact
+  - unless note.visibility_id == 2
+    p = note.fact

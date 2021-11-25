@@ -2,6 +2,23 @@ h2 Notes#new
 = form_with model: @note, local: true do |f|
   p いつあったことですか？
   = f.text_area :when, placeholder:"昨日、先週、この前会った時"
+
   p どんなことがありましたか？
-  = f.text_area :fact, placeholder:""
-  = f.submit '次へ'
+  = f.text_area :fact, placeholder:"自分が気にしていることを言われた"
+
+  p そのときどんな気持ちになりましたか？いくつでもチェックしてください。
+  = f.fields_for :emotion do |e|
+    - Emotion.all.each do  |emotion|
+      = e.check_box emotion.emotion_name, {}, true, false
+      = e.label emotion.emotion_name
+  / = collection_check_boxes :note, :emotion_ids, Emotion.all, :id, :emotion_name
+
+  p そのとき自分はどうしたかったですか？
+  = f.text_area :wanted_to, placeholdar:"嫌な気持ちになったことを伝えたかった"
+  
+  p そのとき相手にどうしてほしかったですか？
+  = f.text_area :wanted_you_to, placeholdar:"その話題をださないでほしかった"
+
+  p このノートを公開しますか？
+  = f.collection_select :visibility_id, Visibility.all, :id, :name, {}
+  = f.submit '作る'

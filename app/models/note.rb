@@ -1,8 +1,9 @@
 class Note < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :visibility
+  has_one :visibility
   belongs_to :user
-  has_many :emotions
+  has_many :emotions, through: :note_emotions
+  has_many :note_emotions
 
   validates :fact, presence: true
 end
