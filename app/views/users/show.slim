@@ -5,4 +5,4 @@ h2 = @name
 
 h3 note一覧
 - @notes.each do |note|
-  p = note.fact
+  p = link_to note.fact, note_path(note.id)
