@@ -6,26 +6,27 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    @emotions = Emotion.all
   end
 
   def create
     @note = Note.new(note_params)
-    unless params[:note][:emotion].nil?
-      params[:note][:emotion].each do |key, value|  
-        if value == false
-          next
-        else
-          emotion_id = Emotion.find_by(emotion_name: key).id
-          note_emotion = NoteEmotion.create(note_id: @note.id, emotion_id: emotion_id)
-        end
+    @emotion_ids = params[:note][:emotion_ids]
+    @emotion_ids.shift
+    if @note.save
+      @emotion_ids.each do |emotion_id|
+        emotion = Emotion.find(emotion_id.to_i)
+        @note.emotions << emotion
       end
-      redirect_to 
+      redirect_to root_path
     else
       render :new
     end
-    redirect_to root_path
   end
   
+  def show
+  end
+
   def edit
     if current_user != @note.user 
       redirect_to root
@@ -35,10 +36,10 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:when, :fact, :visibility_id, :wanted_to, :wanted_you_to).merge(user_id: current_user.id)
+    params.require(:note).permit(:when, :fact, :visibility_id, :wanted_to, :wanted_you_to, emotion_ids: []).merge(user_id: current_user.id)
   end
 
   def note_find
-    @note = Item.find(params[:id])
+    @note = Note.find(params[:id])
   end
 end

@@ -1,0 +1,15 @@
+h2 notes#show 
+p いつ
+= @note.when
+p あったこと
+= @note.fact
+p そのときの気持ち
+= @note.emotions.pluck(:emotion_name).join(",")
+p そのときしたかったこと
+= @note.wanted_to
+p そのときしてほしかったこと
+= @note.wanted_you_to
+
+- if current_user == @note.user
+  p = link_to '編集する', edit_note_path(@note.id)
+  p = link_to '削除する', note_path(@note.id), method: :delete

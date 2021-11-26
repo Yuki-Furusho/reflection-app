@@ -4,4 +4,4 @@ h3 Notes#index
 
 - @notes.each do |note|
   - unless note.visibility_id == 2
-    p = note.fact
+    p = link_to note.fact, note_path(note.id)
