@@ -7,11 +7,7 @@ h2 Notes#new
   = f.text_area :fact, placeholder:"自分が気にしていることを言われた"
 
   p そのときどんな気持ちになりましたか？いくつでもチェックしてください。
-  = f.fields_for :emotion do |e|
-    - Emotion.all.each do  |emotion|
-      = e.check_box emotion.emotion_name, {}, true, false
-      = e.label emotion.emotion_name
-  / = collection_check_boxes :note, :emotion_ids, Emotion.all, :id, :emotion_name
+  = f.collection_check_boxes :emotion_ids, @emotions, :id, :emotion_name
 
   p そのとき自分はどうしたかったですか？
   = f.text_area :wanted_to, placeholdar:"嫌な気持ちになったことを伝えたかった"
