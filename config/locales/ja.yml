@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      note:
+        when: タイトル
+        fact: 内容
+        wanted_to: したかったこと
+        wanted_you_to: してほしかったこと
