@@ -13,6 +13,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    @emotions = Emotion.all
     @emotion_ids = params[:note][:emotion_ids]
     @emotion_ids.shift
     if @note.save
