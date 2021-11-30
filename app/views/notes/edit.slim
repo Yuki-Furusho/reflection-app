@@ -2,6 +2,7 @@
 
 .section.container
   = form_with model: @note, local: true do |f|
+    == render 'shared/error_messages', model: f.object
     .field
       = f.label :when,'いつあったことですか？', class: "label"
       .control

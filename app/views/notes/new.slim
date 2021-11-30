@@ -2,6 +2,8 @@
 
 .section.container
   = form_with model: @note, local: true do |f|
+
+    == render 'shared/error_messages', model: f.object
     .field
       = f.label :when,'いつあったことですか？', class: "label"
       .control
@@ -12,7 +14,6 @@
         = f.text_area :fact, placeholder:"自分が気にしていることを言われた", class: "input"
     .field
       = f.label :emotion, 'そのときどんな気持ちになりましたか？いくつでもチェックしてください。', class: "label"
-      / .checkbox
       = f.collection_check_boxes :emotion_ids, @emotions, :id, :emotion_name
     .field
       = f.label :wanted_to, 'そのとき自分はどうしたかったですか？', class: "label"
