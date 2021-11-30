@@ -1,20 +1,30 @@
-h2 Notes#edit
-= form_with model: @note, local: true do |f|
-  p いつあったことですか？
-  = f.text_area :when, placeholder:"昨日、先週、この前会った時"
+= render 'shared/header'
 
-  p どんなことがありましたか？
-  = f.text_area :fact, placeholder:"自分が気にしていることを言われた"
-
-  p そのときどんな気持ちになりましたか？いくつでもチェックしてください。
-  = f.collection_check_boxes :emotion_ids, @emotions, :id, :emotion_name
-
-  p そのとき自分はどうしたかったですか？
-  = f.text_area :wanted_to, placeholdar:"嫌な気持ちになったことを伝えたかった"
-  
-  p そのとき相手にどうしてほしかったですか？
-  = f.text_area :wanted_you_to, placeholdar:"その話題をださないでほしかった"
-
-  p このノートを公開しますか？
-  = f.collection_select :visibility_id, Visibility.all, :id, :name, {}
-  = f.submit '更新する'
+.section.container
+  = form_with model: @note, local: true do |f|
+    .field
+      = f.label :when,'いつあったことですか？', class: "label"
+      .control
+        = f.text_field :when, placeholder:"昨日、先週、この前会った時", class: "input"
+    .field
+      = f.label :fact, 'どんなことがありましたか？', class: "label"
+      .control
+        = f.text_area :fact, placeholder:"自分が気にしていることを言われた", class: "input"
+    .field
+      = f.label :emotion, 'そのときどんな気持ちになりましたか？いくつでもチェックしてください。', class: "label"
+      / .checkbox
+      = f.collection_check_boxes :emotion_ids, @emotions, :id, :emotion_name
+    .field
+      = f.label :wanted_to, 'そのとき自分はどうしたかったですか？', class: "label"
+      .control
+        = f.text_area :wanted_to, placeholdar:"嫌な気持ちになったことを伝えたかった", class: "input"
+    .field  
+      = f.label :wanted_you_to, 'そのとき相手にどうしてほしかったですか？', class: "label"
+      .control
+        = f.text_area :wanted_you_to, placeholdar:"その話題をださないでほしかった", class: "input"
+    .field
+      = f.label :visibility_id, 'このノートを公開しますか？', class: "label"
+      .control
+        .select = f.collection_select :visibility_id, Visibility.all, :id, :name, {}
+    .field
+      = f.submit '更新する'

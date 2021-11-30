@@ -1,8 +1,15 @@
 == render 'shared/header'
 
-h2 = @name 
-= link_to '登録情報の設定', edit_user_registration_path(current_user.id)
+.columns 
+  .column
+    .has-text-centered
+      .is-size-4.has-text-weight-bold = @name
+  .column
+    .has-text-centered
+      .button = link_to '設定', edit_user_registration_path(current_user.id)
 
-h3 note一覧
-- @notes.each do |note|
-  p = link_to note.fact, note_path(note.id)
+.section
+  .columns.has-text-centered.is-multiline
+    - @notes.each do |note|
+      .column.is-3.box.m-3 = link_to note.fact, note_path(note.id)
+

@@ -1,9 +1,25 @@
-h2 リフレクションアプリ
+.navbar.
+  .navbar-brand
+    .title.is-3.ml-6.my-4 =link_to 'リフレクションアプリ', root_path
 
-- if user_signed_in?
-  li = link_to 'マイページ', user_path(current_user.id)
-  li = link_to 'ログアウト', destroy_user_session_path, method: :delete
-  li = link_to '新規作成', new_note_path
-- else
-  li = link_to '新規登録', new_user_registration_path
-  li = link_to 'サインイン', new_user_session_path
+  .navbar-end
+    .navbar-item
+      .buttons
+      - if user_signed_in?
+        .button.is-ghost
+          .m-2 = link_to 'マイページ', user_path(current_user.id)
+        .button.is-ghost
+          .m-2 = link_to 'ログアウト', destroy_user_session_path, method: :delete
+        - unless controller.controller_name == 'notes' && controller.action_name == 'new'
+          .button.is-light
+            = icon 'fas', 'pencil-alt'
+            .m-2 = link_to '書く', new_note_path
+      - else
+        .button.is-ghost
+          = icon 'far', 'user'
+          .m-2 = link_to '新規登録', new_user_registration_path
+        .button.is-light
+          = icon 'fas', 'sign-in-alt'
+          .m-2.has-text-light = link_to 'ログイン', new_user_session_path
+
+hr

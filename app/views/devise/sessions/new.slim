@@ -1,0 +1,25 @@
+== render 'shared/header'
+
+.column.is-4.is-offset-4
+  .has-text-centered.box.m-4
+    .is-size-5.has-text-weight-bold.m-3 ログイン
+    hr
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        = f.label :email, class: 'label'
+        .control = f.email_field :email, autofocus: true, autocomplete: "email", type: "email"
+      .field
+        = f.label :password, class: 'label'
+        .control = f.password_field :password, autocomplete: "current-password", type: "password"
+
+
+      - if devise_mapping.rememberable?
+        .field
+          = f.check_box :remember_me, type: "checkbox"
+          = f.label :remember_me
+      
+      == render "devise/shared/links"      
+      == render "devise/shared/error_messages", resource: resource
+
+      .actions.m-2
+        = f.submit "ログイン"
