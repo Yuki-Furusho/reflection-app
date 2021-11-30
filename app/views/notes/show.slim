@@ -1,15 +1,29 @@
-h2 Notes#show 
-p いつ
-= @note.when
-p あったこと
-= @note.fact
-p そのときの気持ち
-= @note.emotions.pluck(:emotion_name).join(",")
-p そのときしたかったこと
-= @note.wanted_to
-p そのときしてほしかったこと
-= @note.wanted_you_to
+== render 'shared/header'
+
+.section
+  .container.p-5
+    .is-size-5 いつ
+    .is-size-6.p-2.m-2 = @note.when
+  .container.p-5
+    .is-size-5 あったこと
+    .is-size-6.p-2.m-2 = @note.fact
+  .container.p-5
+    .is-size-5 そのときの気持ち
+    .is-size-6.p-2.m-2 = @note.emotions.pluck(:emotion_name).join(",")
+  .container.p-5
+    .is-size-5 そのときしたかったこと
+    .is-size-6.p-2.m-2 = @note.wanted_to
+  .container.p-5
+    .is-size-5 そのときしてほしかったこと
+    .is-size-6.p-2.m-2 = @note.wanted_you_to
 
 - if current_user == @note.user
-  p = link_to '編集する', edit_note_path(@note.id)
-  p = link_to '削除する', note_path(@note.id), method: :delete
+.columns
+  .column.is-desktop
+    .has-text-centered
+      .button = link_to '編集する', edit_note_path(@note.id)
+  .column
+    .has-text-centered
+      .button = link_to '削除する', note_path(@note.id), method: :delete
+
+== render 'shared/footer'

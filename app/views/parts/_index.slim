@@ -1,0 +1,16 @@
+.section.is-medium
+  .container
+    .has-text-centered.m-6
+      .is-size-3.m-2 新着ノート
+      .is-size-5 最近はこんなノートが書かれました！
+
+  .tile.is-ancestor
+    .tile.parent
+      - @notes.last(8).each do |note|
+        - unless note.visibility_id == 2
+          .tile.is-size-5.box.m-3
+            = link_to note.fact, note_path(note.id)
+
+.has-text-centered.m-6
+  button.button.is-light
+    = link_to 'さっそく書いてみる', new_note_path

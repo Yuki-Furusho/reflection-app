@@ -1,0 +1,34 @@
+.section.is-medium
+  .tile.is-ancestor
+    .tile.is-6.is-vertical.is-parent
+      .tile.is-child
+        .is-size-3 気持ちを伝えて、関係を振り返る
+        .is-size-5 リフレクションアプリ「xxx」
+      .tile.is-child.has-vcentered
+        .has-text-centered
+          .button.is-light = link_to 'さっそく書いてみる', new_note_path
+    .tile.is-parent
+      .is-child
+        = image_tag "letter.jpg", alt: "letter", size: "700x500"
+.section.is-medium
+  #letter.tile.is-ancestor
+      .tile.is-6.is-parent
+        .tile.is-child
+          .is-size-4 パートナーと過ごしていて、距離を感じることはありませんか？
+      .tile.is-vertical.is-parent
+        - @notes.last(3).each do |note|
+          - unless note.visibility_id == 2
+            .tile.is-child.is-size-5
+              = link_to note.fact, note_path(note.id)
+.is-size-4.has-text-centered.m-6 リフレクションアプリは、そのギャップを埋める一歩を踏み出せます
+.section.is-medium
+  .columns
+    .column.is-half.has-text-centered
+      = image_tag "note.jpg", alt: "note", size: "600x400"
+    .column
+      .is-size-6.m-3 モヤモヤしたことや気持ち、相手とのギャップをまとめます。
+      .is-size-6.m-3 それをシェアすることで、対話のきっかけにつなげてください。
+
+.has-text-centered.m-6
+  button.button.is-light
+    = link_to 'さっそく書いてみる', new_note_path

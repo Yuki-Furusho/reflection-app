@@ -1,7 +1,8 @@
 == render "shared/header"
 
-h3 Notes#index
+- if user_signed_in?
+  == render "parts/index"
+- else
+  == render "parts/landing"
 
-- @notes.each do |note|
-  - unless note.visibility_id == 2
-    p = link_to note.fact, note_path(note.id)
+== render "shared/footer"
