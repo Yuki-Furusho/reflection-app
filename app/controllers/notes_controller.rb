@@ -16,11 +16,8 @@ class NotesController < ApplicationController
     @emotions = Emotion.all
     @emotion_ids = params[:note][:emotion_ids]
     @emotion_ids.shift
+    binding.pry
     if @note.save
-      @emotion_ids.each do |emotion_id|
-        emotion = Emotion.find(emotion_id.to_i)
-        @note.emotions << emotion
-      end
       redirect_to root_path
     else
       render :new
@@ -41,10 +38,6 @@ class NotesController < ApplicationController
     @emotion_ids = params[:note][:emotion_ids]
     @emotion_ids.shift
     if @note.update(note_params)
-      @emotion_ids.each do |emotion_id|
-        emotion = Emotion.find(emotion_id.to_i)
-        @note.emotions << emotion
-      end
       redirect_to root_path
     else
       render :edit
