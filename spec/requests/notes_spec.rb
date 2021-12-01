@@ -17,6 +17,7 @@ RSpec.describe "Notes", type: :request do
     end
   end
 
+  # 以下作成中
   xdescribe "POST /notes" do
     context "作成できる場合" do
       it "トップページにリダイレクトされること" do
