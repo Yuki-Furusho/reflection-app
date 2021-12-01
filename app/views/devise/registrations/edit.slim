@@ -1,0 +1,39 @@
+.column.is-4.is-offset-4
+  .has-text-centered.box.m-4
+    .is-size-5.has-text-weight-bold.m-3 アカウント情報の編集
+    hr
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      .field
+        = f.label :email, class: "label"
+        .control = f.email_field :email, autofocus: true, autocomplete: "email"
+
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        = resource.unconfirmed_email
+        p の確認待ちです
+      
+      .field
+        = f.label :current_password, class: "label"
+        .control = f.password_field :current_password, autocomplete: "current-password"
+
+      .field
+        = f.label :password, class: "label"
+        .control = f.password_field :password, autocomplete: "new-password"
+        - if @minimum_password_length
+          em #{@minimum_password_length} 文字以上
+
+      .field
+        = f.label :password_confirmation, class: "label"
+        .control = f.password_field :password_confirmation, autocomplete: "new-password"
+
+      == render "devise/shared/error_messages", resource: resource
+
+      .actions
+        = f.submit "更新する"
+
+.column.is-4.is-offset-4
+  .has-text-centered.box.m-4
+    .is-size-5.has-text-weight-bold.m-3 アカウント削除
+    hr
+    = button_to "削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete
+
+== render 'shared/footer'
