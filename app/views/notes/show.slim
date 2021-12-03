@@ -25,5 +25,9 @@
   .column
     .has-text-centered
       .button = link_to '削除する', note_path(@note.id), method: :delete
+  .column
+    .has-text-centered
+      .line-it-button#line-it-button data-lang="ja" data-type="share-a" data-env="REAL" data-url="{0}" data-color="default" data-size="large" data-count="false" data-ver="3" style="display: none;"
+      script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"
 
 == render 'shared/footer'
