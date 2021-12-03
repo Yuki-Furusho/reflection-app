@@ -12,6 +12,3 @@
   .columns.has-text-centered.is-multiline
     - @notes.each do |note|
       .column.is-3.box.m-3 = link_to note.fact, note_path(note.id)
-
-.line-it-button data-lang="ja" data-type="share-a" data-env="REAL" data-url="https://developers.line.biz/ja/docs/line-social-plugins/install-guide/using-line-share-buttons/" data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;"
-script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"
