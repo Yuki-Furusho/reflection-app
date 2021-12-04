@@ -16,7 +16,6 @@ class NotesController < ApplicationController
     @emotions = Emotion.all
     @emotion_ids = params[:note][:emotion_ids]
     @emotion_ids.shift
-    binding.pry
     if @note.save
       redirect_to root_path
     else
@@ -48,6 +47,7 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     if current_user == note.user
       note.destroy
+      flash[:notice] = "削除しました"
       redirect_to root_path
     else
       redirect_to root_path
