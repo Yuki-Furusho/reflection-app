@@ -23,3 +23,8 @@
           .m-2.has-text-light = link_to 'ログイン', new_user_session_path
 
 hr
+
+- flash.each do |message_type, message|
+  .is-size-4.has-text-danger.has-text-centered.has-text-weight-bold
+    = message
+
