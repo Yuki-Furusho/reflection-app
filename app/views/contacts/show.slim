@@ -1,0 +1,21 @@
+.section
+  .container.p-5
+    .is-size-5 お名前
+    .is-size-6.p-2.m-2 = @contact.name
+  .container.p-5
+    .is-size-5 メールアドレス
+    .is-size-6.p-2.m-2 = @contact.email
+  .container.p-5
+    .is-size-5 お問い合わせ内容
+    .is-size-6.p-2.m-2 = @contact.content
+
+.columns
+  .column.is-desktop
+    .has-text-centered
+      .button = link_to '内容を編集する', edit_contact_path(@contact.id)
+    .column
+    .has-text-centered
+      .button = link_to '送信'
+  .column
+    .has-text-centered
+      .button = link_to 'トップページに戻る', root_path

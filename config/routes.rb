@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: "notes#index"
   resources :notes
   resources :users, only: :show
+  resources :contacts, except: [:index, :destroy]
 end
