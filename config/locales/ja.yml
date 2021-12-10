@@ -6,3 +6,8 @@ ja:
         fact: 内容
         wanted_to: したかったこと
         wanted_you_to: してほしかったこと
+    attributes:
+      contact:
+        name: 名前
+        email: メールアドレス
+        content: お問い合わせ内容

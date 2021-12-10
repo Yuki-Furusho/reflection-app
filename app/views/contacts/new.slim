@@ -1,0 +1,21 @@
+== render 'shared/header'
+
+.title.is-3.is-centered お問い合わせ
+
+.section.container 
+  = form_with model: @contact, url: contacts_confirm_path, local: true do |f|
+    == render 'shared/error_messages', model: f.object
+    .field 
+      = f.label :name, 'お名前', class: 'label'
+      .control 
+        = f.text_field :name, placeholder: 'ふり返り太郎', class: 'input'
+    .field 
+      = f.label :email, 'メールアドレス', class: 'label'
+      .control 
+        = f.email_field :email, placeholder: 'example.com', class: 'input'
+    .field 
+      = f.label :content, 'お問い合わせ内容', class: 'label'
+      .control 
+        = f.text_area :content, placeholder: 'お問い合わせ内容を記入してください', class: 'input'
+    .field
+      = f.submit '確認ページへ'
