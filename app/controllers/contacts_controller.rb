@@ -1,39 +1,33 @@
-class ContactsController < ApplicationController
-  before_action :contact_find, only: [:show, :edit, :update]
+class ContactsController < ApplicationController  
   def new
     @contact = Contact.new
   end
   
-  def create
+  def confirm
     @contact = Contact.new(contact_params)
-    if @contact.save
-      redirect_to contact_path(@contact.id)
-    else
+    if @contact.invalid?
       render :new
     end 
   end
 
-  def show
+  def back
+    @contact = Contact.new(contact_params)
+    render :new
   end
 
-  def edit
-  end
-
-  def update
-    if @contact.update(contact_params)
-      redirect_to contact_path(params[:id])
+  def done
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      ContactMailer.send_mail(@contact).deliver_now
+      render :done
     else
-      render :edit
+      render :new
     end
-  end
+	end
 
   private
 
   def contact_params
     params.require(:contact).permit(:name, :email, :content)
-  end
-
-  def contact_find
-    @contact = Contact.find(params[:id])
   end
 end

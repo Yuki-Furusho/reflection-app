@@ -1,0 +1,30 @@
+== render 'shared/header'
+
+.title.is-3.is-centered お問い合わせ内容の確認
+
+.section
+  .container.p-5
+    .is-size-5 お名前
+    .is-size-6.p-2.m-2 = @contact.name
+  .container.p-5
+    .is-size-5 メールアドレス
+    .is-size-6.p-2.m-2 = @contact.email
+  .container.p-5
+    .is-size-5 お問い合わせ内容
+    .is-size-6.p-2.m-2 = @contact.content
+
+.columns
+  .column.is-desktop
+    .has-text-centered
+      = form_with model: @contact, url: contacts_back_path, local: true do |f|
+        = f.hidden_field :name
+        = f.hidden_field :email
+        = f.hidden_field :content
+        = f.submit '内容を編集する'
+  .column
+    .has-text-centered
+      = form_with model: @contact, url: contacts_done_path, local: true do |f|
+        = f.hidden_field :name
+        = f.hidden_field :email
+        = f.hidden_field :content
+        = f.submit '送信する'

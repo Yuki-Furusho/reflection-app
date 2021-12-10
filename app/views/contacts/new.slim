@@ -1,8 +1,9 @@
+== render 'shared/header'
+
 .title.is-3.is-centered お問い合わせ
 
 .section.container 
-  = form_with model: @contact, local: true do |f|
-
+  = form_with model: @contact, url: contacts_confirm_path, local: true do |f|
     == render 'shared/error_messages', model: f.object
     .field 
       = f.label :name, 'お名前', class: 'label'
